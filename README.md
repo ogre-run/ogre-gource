@@ -1,15 +1,19 @@
 # Repository Visualization with Gource
 
-This repository contains scripts to generate a visually appealing video showcasing the contribution history of a Git repository using Gource. The video dynamically illustrates the evolution of the codebase, displaying file additions, modifications, and deletions over time.  Each contributor is represented by an avatar, making it easy to see who contributed to which parts of the project.
+This repository provides a streamlined way to create captivating videos showcasing the evolution of a Git repository. Using Gource, it visually represents the history of code changes, highlighting contributions from different developers over time. Each commit appears as a dynamic event, with files being added, modified, and deleted by user avatars, making the repository's history engaging and easy to understand.
 
-This tool is useful for project demonstrations, showcasing open-source contributions, or simply creating engaging visuals of a repository's history. It transforms the typical commit log into a dynamic and understandable format.
+This is particularly useful for:
+
+* **Project Demonstrations:** Showcasing the development progress of a project in a visually compelling manner.
+* **Open Source Contributions:** Highlighting the collaborative efforts within an open-source project.
+* **Repository History Visualization:** Creating an engaging overview of a repository's lifecycle, suitable for presentations, reports, or personal archives.
 
 ## Setup and Usage
 
-This script requires `gource`, `ffmpeg`, and `git` to be installed on your system.  You can usually install these through your system's package manager (e.g., `apt-get`, `brew`, etc.). For example on Debian/Ubuntu:
+This script requires `gource`, `ffmpeg`, `xvfb-run` and `git` to be installed on your system.  You can usually install these through your system's package manager (e.g., `apt-get`, `brew`, `yum`, etc.). For example, on Debian/Ubuntu:
 
 ```bash
-sudo apt-get install gource ffmpeg git
+sudo apt-get install gource ffmpeg git xvfb-run
 ```
 
 To create a visualization video, follow these steps:
@@ -21,33 +25,43 @@ git clone https://github.com/<your_username>/<this_repo>.git
 cd <this_repo>
 ```
 
-2. **Run the script:**  The script takes one argument, which can either be a GitHub URL or a local path to a Git repository.
+2. **Run the script:** The script takes one argument: the URL of the GitHub repository.
 
-   **Using a GitHub URL:**
+```bash
+./run.sh <GitHub_repository_URL>
+```
+or
+```bash
+./run.sh /path/to/your/local/repository
+```
 
-   ```bash
-   ./run.sh https://github.com/<username>/<repository>.git
-   ```
+For example:
 
-   **Using a local repository path:**
+```bash
+./run.sh https://github.com/user/repo.git
+```
 
-   ```bash
-   ./run.sh /path/to/your/repository
-   ```
+or
 
-The script performs the following actions:
+```bash
+./run.sh /home/user/my-project
+```
 
-- **Clones the repository:** If a GitHub URL is provided, the script clones the repository. If a local path is given, it skips the cloning step.
-- **Generates `caption.txt`:**  The script extracts the commit history from the repository and creates `caption.txt`, which Gource uses to display commit messages in the visualization.
-- **Runs Gource:** The `gource` command generates a stream of PPM image frames based on the repository's history and configuration specified in `gource.config`. The output is piped to `ffmpeg`.
-- **Runs FFmpeg:** The `ffmpeg` command encodes the PPM stream into an MP4 video file named `gource.x264.mp4`.
+The script will:
+
+1. **Clone the repository (if a URL is provided):**  If a local path is provided, it skips this step.
+2. **Generate `caption.txt`:** Extracts the commit history with timestamps and messages.
+3. **Run Gource:** Generates a stream of PPM image frames visualizing the repository's history based on the `gource.config` settings.  It uses `xvfb-run` to execute Gource in a virtual display environment, avoiding potential display issues on servers.
+4. **Run FFmpeg:** Encodes the PPM stream into an MP4 video file named `gource.x264-<repository_name>.mp4`.
+5. **Clean up:** Removes the temporary `output.ppm` file.
 
 
 ## Configuration
 
-The `gource.config` file contains various settings for customizing the Gource visualization. You can modify parameters like viewport size, display options, user scaling, colors, and the project logo. See the Gource documentation for a full list of available options.
+The `gource.config` file allows customization of the visualization. You can adjust settings like viewport size, display options, user scaling, colors, and the project logo.  Refer to the Gource documentation for a complete list of available options: [https://github.com/acaudwell/Gource](https://github.com/acaudwell/Gource)
+
 
 ## Included Files
 
-- **`run.sh`**:  The main script that orchestrates the process of cloning (if necessary), generating the caption file, running Gource, and encoding the output video.
-- **`gource.config`**: Configuration file for Gource, controlling the appearance of the visualization.
+* **`run.sh`:** The main script to automate the visualization process.
+* **`gource.config`:** Configuration file for Gource.
