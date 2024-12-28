@@ -57,6 +57,9 @@ The script will:
 4. **Run FFmpeg:** Encodes the PPM stream into an MP4 video file named `gource.x264-<repository_name>.mp4`.
 5. **Clean up:** Removes the temporary `output.ppm` file.
 
+# Concatenate Videos
+
+![ogre-gource-gif](./concatenate/concatenate.gif)
 
 ## Configuration
 
