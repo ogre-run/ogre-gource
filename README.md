@@ -51,4 +51,3 @@ The `gource.config` file contains various settings for customizing the Gource vi
 
 - **`run.sh`**:  The main script that orchestrates the process of cloning (if necessary), generating the caption file, running Gource, and encoding the output video.
 - **`gource.config`**: Configuration file for Gource, controlling the appearance of the visualization.
-- **`run_ffmpeg.sh`**: A simplified script that only runs the ffmpeg command. While present in the repository, it's currently unused as ffmpeg is invoked directly from `run.sh`.
