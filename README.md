@@ -8,6 +8,8 @@ This is particularly useful for:
 * **Open Source Contributions:** Highlighting the collaborative efforts within an open-source project.
 * **Repository History Visualization:** Creating an engaging overview of a repository's lifecycle, suitable for presentations, reports, or personal archives.
 
+![ogre-gource-gif](./gource.x264-gptify.gif)
+
 ## Setup and Usage
 
 This script requires `gource`, `ffmpeg`, `xvfb-run` and `git` to be installed on your system.  You can usually install these through your system's package manager (e.g., `apt-get`, `brew`, `yum`, etc.). For example, on Debian/Ubuntu:
