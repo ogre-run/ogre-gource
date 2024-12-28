@@ -1,4 +1,3 @@
-```markdown
 # Repository Visualization with Gource
 
 This repository provides a streamlined way to create captivating videos showcasing the evolution of a Git repository. Using Gource, it visually represents the history of code changes, highlighting contributions from different developers over time. Each commit appears as a dynamic event, with files being added, modified, and deleted by user avatars, making the repository's history engaging and easy to understand.
@@ -66,4 +65,3 @@ The `gource.config` file allows customization of the visualization. You can adju
 
 * **`run.sh`:** The main script to automate the visualization process.
 * **`gource.config`:** Configuration file for Gource.
-```
